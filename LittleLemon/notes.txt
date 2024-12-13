@@ -12,3 +12,8 @@ Delivery Crew Credentials:
 Username: delivery
 Email: (leave blank)
 Password: littlelemon@123!
+
+# Notes
+- All credentials are case-sensitive.
+- The `Manager` group has permissions to manage categories, menu items, and orders.
+- The `Delivery Crew` group can view and update the status of assigned orders.
