@@ -1,0 +1,14 @@
+Superuser Credentials:
+Username: admin
+Email: (leave blank)
+Password: littlelemon@123!
+
+Manager Credentials:
+Username: manager
+Email: (leave blank)
+Password: littlelemon@123!
+
+Delivery Crew Credentials:
+Username: delivery
+Email: (leave blank)
+Password: littlelemon@123!
