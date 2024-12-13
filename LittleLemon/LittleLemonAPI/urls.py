@@ -15,4 +15,8 @@ urlpatterns = [
     # Orders
     path('orders/', views.OrdersView.as_view(), name='orders'),
     path('delivery-orders/', views.DeliveryOrdersView.as_view(), name='delivery-orders'),
+
+    # Groups
+    path('groups/<str:group_name>/users/', views.ManageGroupUsersView.as_view(), name='manage-group-users'),
+
 ]

@@ -2,6 +2,10 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework.permissions import BasePermission
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+from django.contrib.auth.models import Group, User  # Import Group and User models
 from .models import Category, MenuItem, Cart, Order, OrderItem
 from .serializers import (
     CategorySerializer,
@@ -9,7 +13,6 @@ from .serializers import (
     CartSerializer,
     OrderSerializer,
 )
-
 
 # Custom Permissions
 class IsManager(BasePermission):
@@ -108,3 +111,38 @@ class AdminMenuItemManagementView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MenuItemSerializer
     permission_classes = [IsAdminUser]  # Restrict access to admin users only
     throttle_classes = [UserRateThrottle]
+
+# Admin Group Management
+class ManageGroupUsersView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def post(self, request, group_name):
+        try:
+            group = Group.objects.get(name=group_name)
+            user = User.objects.get(username=request.data['username'])
+            group.user_set.add(user)
+            return Response({"message": f"User {user.username} added to {group_name} group"}, status=HTTP_200_OK)
+        except Group.DoesNotExist:
+            return Response({"error": "Group does not exist"}, status=HTTP_400_BAD_REQUEST)
+        except User.DoesNotExist:
+            return Response({"error": "User does not exist"}, status=HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, group_name):
+        try:
+            group = Group.objects.get(name=group_name)
+            user = User.objects.get(username=request.data['username'])
+            group.user_set.remove(user)
+            return Response({"message": f"User {user.username} removed from {group_name} group"}, status=HTTP_200_OK)
+        except Group.DoesNotExist:
+            return Response({"error": "Group does not exist"}, status=HTTP_400_BAD_REQUEST)
+        except User.DoesNotExist:
+            return Response({"error": "User does not exist"}, status=HTTP_400_BAD_REQUEST)
+
+    def get(self, request, group_name):
+        try:
+            group = Group.objects.get(name=group_name)
+            users = group.user_set.all()
+            usernames = [user.username for user in users]
+            return Response({"group": group_name, "users": usernames}, status=HTTP_200_OK)
+        except Group.DoesNotExist:
+            return Response({"error": "Group does not exist"}, status=HTTP_400_BAD_REQUEST)
