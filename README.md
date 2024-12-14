@@ -4,6 +4,32 @@ This project is a RESTful API developed using Django, Django Rest Framework (DRF
 
 ---
 
+## Table of Contents
+
+1. [Repository](#repository)
+2. [Features](#features)
+   - [Authentication](#authentication)
+   - [Admin Features](#admin-features)
+   - [Manager Features](#manager-features)
+   - [Delivery Crew Features](#delivery-crew-features)
+   - [Customer Features](#customer-features)
+3. [Installation and Setup](#installation-and-setup)
+4. [Users and Credentials](#users-and-credentials)
+5. [API Endpoints](#api-endpoints)
+   - [Authentication](#authentication)
+   - [Categories](#categories)
+   - [Menu Items](#menu-items)
+   - [Cart](#cart)
+   - [Orders](#orders)
+   - [User Group Management](#user-group-management)
+6. [Testing](#testing)
+7. [Deployment Notes](#deployment-notes)
+8. [Submission Guidelines](#submission-guidelines)
+9. [License](#license)
+10. [Contact](#contact)
+
+---
+
 ## Repository
 [Little Lemon API Project on GitHub](https://github.com/Cod-e-Codes/little-lemon-api-project)
 
@@ -94,32 +120,44 @@ This project is a RESTful API developed using Django, Django Rest Framework (DRF
 ## API Endpoints
 
 ### Authentication
-- `POST /api/token/login/` - Obtain authentication token.
-- `POST /api/token/logout/` - Revoke authentication token.
+| Method | Endpoint                 | Description                      |
+|--------|--------------------------|----------------------------------|
+| POST   | `/api/token/login/`      | Obtain authentication token.    |
+| POST   | `/api/token/logout/`     | Revoke authentication token.    |
 
 ### Categories
-- `GET /api/categories/` - List all categories.
-- `POST /api/categories/` - Create a new category (Admin/Manager only).
+| Method | Endpoint                 | Description                             |
+|--------|--------------------------|-----------------------------------------|
+| GET    | `/api/categories/`       | List all categories.                   |
+| POST   | `/api/categories/`       | Create a new category (Admin/Manager). |
 
 ### Menu Items
-- `GET /api/menu-items/` - List all menu items.
-- `POST /api/menu-items/` - Add a new menu item (Admin/Manager only).
+| Method | Endpoint                 | Description                             |
+|--------|--------------------------|-----------------------------------------|
+| GET    | `/api/menu-items/`       | List all menu items.                   |
+| POST   | `/api/menu-items/`       | Add a new menu item (Admin/Manager).   |
 
 ### Cart
-- `GET /api/cart/` - View cart items.
-- `POST /api/cart/` - Add an item to the cart.
-- `DELETE /api/cart/` - Clear the cart.
+| Method | Endpoint                 | Description                      |
+|--------|--------------------------|----------------------------------|
+| GET    | `/api/cart/`             | View cart items.                |
+| POST   | `/api/cart/`             | Add an item to the cart.        |
+| DELETE | `/api/cart/`             | Clear the cart.                 |
 
 ### Orders
-- `GET /api/orders/` - View orders (filtered by role).
-- `POST /api/orders/` - Place a new order (Customer only).
-- `PATCH /api/orders/<id>/deliver/` - Mark an order as delivered (Delivery Crew only).
+| Method | Endpoint                         | Description                              |
+|--------|----------------------------------|------------------------------------------|
+| GET    | `/api/orders/`                   | View orders (filtered by role).          |
+| POST   | `/api/orders/`                   | Place a new order (Customer only).       |
+| PATCH  | `/api/orders/<id>/deliver/`      | Mark an order as delivered (Delivery).   |
 
 ### User Group Management
-- `GET /api/groups/manager/users/` - List all managers.
-- `POST /api/groups/manager/users/` - Add a user to the `Manager` group.
-- `GET /api/groups/delivery-crew/users/` - List all delivery crew members.
-- `POST /api/groups/delivery-crew/users/` - Add a user to the `Delivery Crew` group.
+| Method | Endpoint                                | Description                             |
+|--------|----------------------------------------|-----------------------------------------|
+| GET    | `/api/groups/manager/users/`           | List all managers.                     |
+| POST   | `/api/groups/manager/users/`           | Add a user to the `Manager` group.     |
+| GET    | `/api/groups/delivery-crew/users/`     | List all delivery crew members.        |
+| POST   | `/api/groups/delivery-crew/users/`     | Add a user to the `Delivery Crew`.     |
 
 ---
 
