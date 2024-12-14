@@ -1,19 +1,36 @@
-Superuser Credentials:
+# Little Lemon API Deployment Notes
+
+## Database Setup
+- SQLite database is included
+- Run migrations: `python manage.py migrate`
+
+## Superuser Credentials
 Username: admin
-Email: (leave blank)
-Password: littlelemon@123!
+Password: littlelemon2024
 
-Manager Credentials:
-Username: manager
-Email: (leave blank)
-Password: littlelemon@123!
+## Test User Credentials
+1. Manager User
+   - Username: manager
+   - Password: managerpass
 
-Delivery Crew Credentials:
-Username: delivery
-Email: (leave blank)
-Password: littlelemon@123!
+2. Delivery Crew User
+   - Username: delivery
+   - Password: deliverypass
 
-# Notes
-- All credentials are case-sensitive.
-- The `Manager` group has permissions to manage categories, menu items, and orders.
-- The `Delivery Crew` group can view and update the status of assigned orders.
+3. Customer User
+   - Username: customer
+   - Password: customerpass
+
+## Initial Setup
+1. Create superuser: `python manage.py createsuperuser`
+2. Create user groups from admin panel:
+   - Manager
+   - Delivery Crew
+
+## API Access
+- Base URL: http://localhost:8000/api/
+- Token authentication required for most endpoints
+- Obtain tokens via `/api/token/login/`
+
+## Testing
+- Run tests: `python manage.py test`
