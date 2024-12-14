@@ -1,4 +1,4 @@
-# Little Lemon API Project
+# Little Lemon Project
 
 This project is a RESTful API developed using Django, Django Rest Framework (DRF), and Djoser for Little Lemon, a restaurant management system. It supports user authentication, role-based permissions, and features for managing menu items, categories, carts, and orders. The project is designed to handle interactions between administrators, managers, delivery crew, and customers.
 
@@ -31,7 +31,7 @@ This project is a RESTful API developed using Django, Django Rest Framework (DRF
 ---
 
 ## Repository
-[Little Lemon API Project on GitHub](https://github.com/Cod-e-Codes/little-lemon-api-project)
+[Little Lemon Project on GitHub](https://github.com/Cod-e-Codes/littlelemon)
 
 ---
 
@@ -73,8 +73,8 @@ This project is a RESTful API developed using Django, Django Rest Framework (DRF
 ### Steps
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/Cod-e-Codes/little-lemon-api-project.git
-   cd little-lemon-api-project
+   git clone https://github.com/Cod-e-Codes/littlelemon.git
+   cd littlelemon
    ```
 
 2. **Set Up the Virtual Environment**
