@@ -1,22 +1,27 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import (
+    MenuItemViewSet, 
+    CategoryViewSet, 
+    CartViewSet, 
+    OrderViewSet,
+    UserGroupManagementViewSet
+)
+
+router = DefaultRouter()
+router.register(r'menu-items', MenuItemViewSet, basename='menuitem')
+router.register(r'categories', CategoryViewSet, basename='category')
+router.register(r'cart', CartViewSet, basename='cart')
+router.register(r'orders', OrderViewSet, basename='order')
 
 urlpatterns = [
-    # Categories
-    path('categories/', views.CategoriesView.as_view(), name='categories'),
-
-    # Menu Items
-    path('menu-items/', views.MenuItemsView.as_view(), name='menu-items'),
-    path('menu-items/<int:pk>/', views.AdminMenuItemManagementView.as_view(), name='menu-item-detail'),
-
-    # Cart
-    path('cart/', views.CartView.as_view(), name='cart'),
-
-    # Orders
-    path('orders/', views.OrdersView.as_view(), name='orders'),
-    path('delivery-orders/', views.DeliveryOrdersView.as_view(), name='delivery-orders'),
-
-    # Groups
-    path('groups/<str:group_name>/users/', views.ManageGroupUsersView.as_view(), name='manage-group-users'),
-
+    path('', include(router.urls)),
+    
+    # User Group Management Endpoints
+    path('groups/manager/users', 
+         UserGroupManagementViewSet.as_view({'get': 'manager_users', 'post': 'manager_users'}), 
+         name='manager-users'),
+    path('groups/delivery-crew/users', 
+         UserGroupManagementViewSet.as_view({'get': 'delivery_crew_users', 'post': 'delivery_crew_users'}), 
+         name='delivery-crew-users'),
 ]
